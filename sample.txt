@@ -1,1 +1,3 @@
 this is new file
+
+# to activate the virtual env in cmd path after that u can call (call .venv/Scripts/activate)
