@@ -1,3 +1,13 @@
 this is new file
 
 # to activate the virtual env in cmd path after that u can call (call .venv/Scripts/activate)
+
+
+git add .
+
+git commit --amend --no-edit
+
+
+or we can use if you have changed in file but the same file exist in your local repo and no need to new file by using git add .
+
+git commit -a -m "newly commited"
