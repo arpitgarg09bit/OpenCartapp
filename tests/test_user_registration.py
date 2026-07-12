@@ -30,8 +30,8 @@ from pages.registration_page import RegistrationPage
 from utilities.random_data_util import RandomDataUtil
 
 
-# @pytest.mark.sanity
-# @pytest.mark.regression
+@pytest.mark.sanity
+@pytest.mark.regression
 def test_user_registration(page):
     """
     Automated Test Case: Verify that a new user can successfully register an account.

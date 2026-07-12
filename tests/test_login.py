@@ -42,8 +42,8 @@ from pages.my_account_page import MyAccountPage
 from config import Config  # Configuration file holding credentials
 
 
-# @pytest.mark.sanity
-# @pytest.mark.regression
+@pytest.mark.sanity
+@pytest.mark.regression
 def test_invalid_user_login(page):
     """
     Automated Test Case: Verify that login fails for invalid user credentials.
@@ -67,8 +67,8 @@ def test_invalid_user_login(page):
     expect(login_page.get_login_error()).to_be_visible(timeout=3000)
 
 
-# @pytest.mark.sanity
-# @pytest.mark.regression
+@pytest.mark.sanity
+@pytest.mark.regression
 def test_valid_user_login(page):
     """
     Automated Test Case: Verify that login succeeds for valid user credentials.
