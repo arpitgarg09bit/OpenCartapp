@@ -7,11 +7,19 @@ class RandomDataUtil:
     def __init__(self):
         self.faker = Faker()
 
+<<<<<<< HEAD
     def get_first_name(self) -> str:
         return self.faker.first_name()
 
     def get_last_name(self) -> str:
         return self.faker.last_name()
+=======
+    def get_input_username(self) -> str:
+        return self.faker.input_username()
+
+    def get_input_password(self) -> str:
+        return self.faker.input_password()
+>>>>>>> feature/source-demo
 
     def get_full_name(self) -> str:
         return self.faker.name()

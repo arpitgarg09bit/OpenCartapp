@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/OpenCartapp.iml" filepath="$PROJECT_DIR$/.idea/OpenCartapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SauceDemo.iml" filepath="$PROJECT_DIR$/.idea/SauceDemo.iml" />
     </modules>
   </component>
 </project>

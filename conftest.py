@@ -22,12 +22,32 @@ def pytest_addoption(parser):
     Adds command line options for test configuration.
     You can override these when running pytest or store defaults in pytest.ini.
     """
+<<<<<<< HEAD
     parser.addoption("--browser", default="chromium", help="Browser: chromium, firefox, webkit")
     parser.addoption("--headed", action="store_true", help="Run in headed (visible) mode")
     parser.addoption("--base-url", default="https://tutorialsninja.com/demo/", help="Base URL for tests")
     parser.addoption("--video", default="retain-on-failure", help="Record video: on, off, retain-on-failure")
     parser.addoption("--screenshot", default="only-on-failure", help="Take screenshot: on, off, only-on-failure")
     parser.addoption("--tracing", default="retain-on-failure", help="Tracing: on, off, retain-on-failure")
+=======
+    # Add options with exception handling for duplicate registrations
+    from argparse import ArgumentError
+    
+    options_to_add = [
+        ("--my-browser", {"default": "chromium", "help": "Browser: chromium, firefox, webkit"}),
+        ("--my-headed", {"action": "store_true", "help": "Run in headed (visible) mode"}),
+        ("--my-base-url", {"default": "https://www.saucedemo.com/", "help": "Base URL for tests"}),
+        ("--video", {"default": "retain-on-failure", "help": "Record video: on, off, retain-on-failure"}),
+        ("--screenshot", {"default": "only-on-failure", "help": "Take screenshot: on, off, only-on-failure"}),
+        ("--tracing", {"default": "retain-on-failure", "help": "Tracing: on, off, retain-on-failure"}),
+    ]
+    
+    for opt_name, opt_kwargs in options_to_add:
+        try:
+            parser.addoption(opt_name, **opt_kwargs)
+        except (ValueError, ArgumentError):
+            pass
+>>>>>>> feature/source-demo
 
 
 # ----------------------------------------------------------------------------
@@ -35,6 +55,7 @@ def pytest_addoption(parser):
 # ----------------------------------------------------------------------------
 def get_config_value(config, option_name):
     """
+<<<<<<< HEAD
     Helper to read configuration values.
     Tries to get from command line first, otherwise from pytest.ini.
     Supports both string and boolean options.
@@ -50,6 +71,20 @@ def get_config_value(config, option_name):
         return ini_value.lower() == "true" if isinstance(ini_value, str) else ini_value
     else:
         return config.getini(option_name)
+=======
+    Helper to read configuration values from command line using getoption.
+    Retrieves pytest command-line argument values by converting underscore to hyphen.
+    """
+    # Convert underscores to hyphens for getoption (pytest converts option names)
+    cli_option_name = option_name.replace("_", "-")
+    
+    try:
+        value = config.getoption(cli_option_name)
+        return value
+    except (ValueError, AttributeError) as e:
+        # Option not found or error occurred
+        return None
+>>>>>>> feature/source-demo
 
 
 # ----------------------------------------------------------------------------
@@ -79,9 +114,15 @@ def browser_context(request):
     - Cleans up automatically after each test
     """
     # Read configuration values
+<<<<<<< HEAD
     browser_name = get_config_value(request.config, "browser")
     headed_flag = get_config_value(request.config, "headed")
     video_option = get_config_value(request.config, "video")
+=======
+    browser_name = get_config_value(request.config, "my_browser") or "chromium"
+    headed_flag = get_config_value(request.config, "my_headed") or False
+    video_option = get_config_value(request.config, "video") or "retain-on-failure"
+>>>>>>> feature/source-demo
 
     print(f"[OK] Starting browser: {browser_name}")
     print(f"[OK] Headless mode: {not headed_flag} (headed={headed_flag})")
@@ -128,10 +169,17 @@ def page(request, browser_context):
     - Attaches all artifacts to Allure report
     """
     # Read test configuration
+<<<<<<< HEAD
     base_url = get_config_value(request.config, "base_url")
     screenshot_option = get_config_value(request.config, "screenshot")
     tracing_option = get_config_value(request.config, "tracing")
     video_option = get_config_value(request.config, "video")
+=======
+    base_url = get_config_value(request.config, "my_base_url") or "https://www.saucedemo.com/"
+    screenshot_option = get_config_value(request.config, "screenshot") or "only-on-failure"
+    tracing_option = get_config_value(request.config, "tracing") or "retain-on-failure"
+    video_option = get_config_value(request.config, "video") or "retain-on-failure"
+>>>>>>> feature/source-demo
 
     print(f"[INFO] Navigating to: {base_url}")
 
